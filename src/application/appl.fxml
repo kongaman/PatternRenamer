@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="483.0" prefWidth="703.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+   <top>
+      <HBox prefHeight="31.0" prefWidth="439.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnDirChoser" mnemonicParsing="false" onAction="#openDirChoser" text="Chose Folder" />
+            <Button fx:id="btnReScan" mnemonicParsing="false" onAction="#rescan" text="Re-Scan" />
+            <Button mnemonicParsing="false" text="Special" />
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </HBox>
+   </top>
+   <bottom>
+      <AnchorPane prefHeight="37.0" prefWidth="439.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnSave" layoutX="648.0" layoutY="7.0" mnemonicParsing="false" onAction="#save" text="Save" />
+            <Button fx:id="btnSaveNExit" layoutX="562.0" layoutY="6.0" mnemonicParsing="false" onAction="#saveNExit" text="Save &amp; Exit" />
+         </children>
+      </AnchorPane>
+   </bottom>
+   <left>
+      <VBox prefHeight="401.0" prefWidth="260.0" spacing="5.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Original Files" />
+            <ListView fx:id="lvLeftOrig" prefHeight="404.0" prefWidth="250.0" />
+         </children>
+         <padding>
+            <Insets left="5.0" right="5.0" />
+         </padding>
+      </VBox>
+   </left>
+   <center>
+      <VBox fx:id="middleBox" alignment="TOP_CENTER" prefHeight="260.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="TOP_CENTER" contentDisplay="CENTER" text="Nameparts" />
+         </children>
+      </VBox>
+   </center>
+   <right>
+      <VBox prefHeight="401.0" prefWidth="260.0" spacing="5.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Renamed Files Preview" />
+            <ListView fx:id="lvRightChanged" prefHeight="404.0" prefWidth="250.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </ListView>
+         </children>
+         <padding>
+            <Insets left="5.0" right="5.0" />
+         </padding>
+      </VBox>
+   </right>
+</BorderPane>
