@@ -43,20 +43,8 @@ public class FileDetails {
 		return seperator;
 	}
 
-	public void setSeperator() {
-		int minus = stripped.length() - stripped.replaceAll("-","").length();
-		int dot = stripped.length() - stripped.replaceAll(".","").length();
-		int underscore = stripped.length() - stripped.replaceAll("_","").length();
-		if(minus > dot && minus > underscore){
-			this.seperator = '-';
-		} else if(dot > minus && dot > underscore){
-			this.seperator = '.';
-		} else if(underscore > minus && underscore > dot) {
-			this.seperator = '_';
-		} else {
-			this.seperator = 'x';
-		}
-		System.out.println("Seperator found for this file: " + this.seperator);
+	public void setSeperator(char seperator) {
+		this.seperator = seperator;
 	}
 
 	public ArrayList<NamePart> getParts() {
@@ -103,7 +91,13 @@ public class FileDetails {
 			}
 		}		
 		this.renamedFilename = prefix + partName + suffix;
-	}	
+	}
+	
+	public void initFileDetails() {
+		this.setParts(parts);
+		this.renamedFilename = getOrigFilename();
+		
+	}
 	
 
 }
