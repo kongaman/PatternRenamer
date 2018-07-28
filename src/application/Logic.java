@@ -46,51 +46,59 @@ public class Logic {
 	      return max;
 	   }
 	   
-//	   public ArrayList<FileNamePart> verifyPatternParts(ArrayList<File> fileList, char sep) {
-//	      HashMap<FileNamePart, Integer> hmap = new HashMap<FileNamePart, Integer>();
-//	      ArrayList<FileNamePart> allFileNameParts = new ArrayList<>();
-//	      ArrayList<FileNamePart> allUsableFileNameParts = new ArrayList<>();
-//	      for (File file : fileList) {
-//	         allFileNameParts = filenameToObjectList(file.getName(), sep);
-//	         for (FileNamePart fileNamePart : allFileNameParts) {
-//	            if (hmap.isEmpty()) {
-//	               hmap.put(fileNamePart, 1); 
-//	            } else if (!hmap.containsKey(fileNamePart)){
-//	               hmap.put(fileNamePart, 1);
-//	            } else if (hmap.containsKey(fileNamePart)) {
-//	               hmap.put(fileNamePart, hmap.get(fileNamePart) + 1);
-//	            }
-//	         }     
-//	      }
-//	      for (Entry<FileNamePart, Integer> entry : hmap.entrySet()) {
-//	         if(entry.getValue() > 3){
-//	            allFileNameParts.add(entry.getKey());
-//	         }
-//	      }  
-//	     return allFileNameParts;    
-//	   }
-//	   
-//	   public ArrayList<String> getParts(ArrayList<File> fileList) {
-//	      char splitChar = verifySplit(fileList);
-//	      System.out.println(splitChar);
-//	      ArrayList<String> allParts = new ArrayList<>();
-//	      if(splitChar != 'x') {
-//	         for(File f : fileList){
-//	            String fileName = f.getName();
-//	            String[] parts = fileName.split("(?=\\"+ getSplitChar(fileName) + ")");
-//	            for(String part : parts){
-//	               if(allParts.isEmpty()){
-//	                  allParts.add(part);
-//	               } else if(!allParts.contains(part) && !allParts.isEmpty()) {
-//	                  allParts.add(part);
-//	               }
-//	            }      
-//	         }
-//	         return allParts;
-//	      } else {
-//	         return null;
-//	      }   
-//	   }
+	   public ArrayList<FileNamePart> verifyPatternParts(ArrayList<File> fileList, char sep) {
+	      HashMap<FileNamePart, Integer> hmap = new HashMap<FileNamePart, Integer>();
+	      ArrayList<FileNamePart> allFileNameParts = new ArrayList<>();
+	      ArrayList<FileNamePart> allUsableFileNameParts = new ArrayList<>();
+	      for (File file : fileList) {
+	         allFileNameParts = filenameToObjectList(file.getName(), sep);
+	         for (FileNamePart fileNamePart : allFileNameParts) {
+	            if (hmap.isEmpty()) {
+	               hmap.put(fileNamePart, 1); 
+	            } else if (!hmap.containsKey(fileNamePart)){
+	               hmap.put(fileNamePart, 1);
+	            } else if (hmap.containsKey(fileNamePart)) {
+	               hmap.put(fileNamePart, hmap.get(fileNamePart) + 1);
+	            }
+	         }     
+	      }
+	      for (Entry<FileNamePart, Integer> entry : hmap.entrySet()) {
+	         if(entry.getValue() > 3){
+	            allFileNameParts.add(entry.getKey());
+	         }
+	      }  
+	     return allFileNameParts;    
+	   }
+	   
+	   public ArrayList<FileDetails> fillParts(ArrayList<FileDetails> detailList) {
+		   for (FileDetails fileD : detailList) {
+			   char splitChar = fileD.getSeperator();
+			   String splitName = fileD.getStripped();
+			   String[] parts = splitName.split("(?=\\"+ splitChar + ")");
+			   ArrayList<NamePart> allParts = new ArrayList<>();
+			   for (String part : parts) {
+				   allParts.add(new NamePart(part, true));		
+			   }
+			   fileD.setParts(allParts);
+		}
+	      ArrayList<String> allParts = new ArrayList<>();
+	      if(splitChar != 'x') {
+	         for(File f : fileList){
+	            String fileName = f.getName();
+	            String[] parts = fileName.split("(?=\\"+ getSplitChar(fileName) + ")");
+	            for(String part : parts){
+	               if(allParts.isEmpty()){
+	                  allParts.add(part);
+	               } else if(!allParts.contains(part) && !allParts.isEmpty()) {
+	                  allParts.add(part);
+	               }
+	            }      
+	         }
+	         return allParts;
+	      } else {
+	         return null;
+	      }   
+	   }
 //	   
 //	   public ArrayList<FileNamePart> filenameToObjectList(String fileName, char seperator) {
 //	      ArrayList<FileNamePart> allFilenameParts = new ArrayList<>();

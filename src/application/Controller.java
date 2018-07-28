@@ -70,5 +70,4 @@ public class Controller {
     void rescan(ActionEvent event) {
 
     }
-
 }
