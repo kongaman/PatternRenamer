@@ -52,6 +52,9 @@ public class Controller {
 			detailList.add(new FileDetails(file));
 			detailList.get(detailList.size()).setSeperator(masterSeperator);
 		}
+    	_logic.setGlobalParts(_logic.fillGlobalPatternList(detailList));
+    	detailList = _logic.fillParts(detailList, _logic.getGlobalParts());
+    	
     }
     
     @FXML
